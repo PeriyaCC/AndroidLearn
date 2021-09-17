@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AndroidLearn</string>
+    <string name="listview">ListView</string>
+    <string name="recyclerview">RecyclerView</string>
+    <string name="widgets">Widgets</string>
+    <string name="clistView">Custom ListView</string>
+    <string name="released_on_2018">Released on %s</string>
+    <string name="version_8">Version 8</string>
+    <string name="sdk_29">SDK 29</string>
+    <string name="android_sample_desc">User Experience. Picture-in-Picture mode. Notifications</string>
+</resources>
