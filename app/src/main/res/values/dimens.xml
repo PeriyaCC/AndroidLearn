@@ -7,4 +7,5 @@
     <dimen name="d10">10dp</dimen>
     <dimen name="d100">100dp</dimen>
     <dimen name="t35">35sp</dimen>
+    <dimen name="d15">15sp</dimen>
 </resources>

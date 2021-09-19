@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".LauncherActivity">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAndroidVersions"
         android:layout_width="match_parent"

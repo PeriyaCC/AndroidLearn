@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_version.view.*
 
-class VersionsAdapter : RecyclerView.Adapter<VersionsAdapter.VH>() {
+class VersionsAdapter(val callback: (String?) -> Unit, val deleteCallback: (Int) -> Unit) : RecyclerView.Adapter<VersionsAdapter.VH>() {
+
+    //Note :- Never pass context from view to adapter!
 
     var versionListItems: ArrayList<String>? = null
         set(value) {
@@ -23,8 +25,19 @@ class VersionsAdapter : RecyclerView.Adapter<VersionsAdapter.VH>() {
 
     override fun getItemCount() = versionListItems?.size ?: 0
 
-    class VH(itemView : View) : RecyclerView.ViewHolder(itemView){
+    inner class VH(itemView : View) : RecyclerView.ViewHolder(itemView){
+
+        init {
+            with(itemView){
+                tvTxt.setOnClickListener {
+                    //callback.invoke(itemView.tag as String)
+                    callback.invoke(versionListItems?.get(adapterPosition))
+                }
+            }
+        }
+
         fun bind(data: String?) {
+            //itemView.tag = data
             with(itemView){
                 tvTxt.text = data
             }
