@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_version.view.*
 
-class VersionsAdapter(val callback: (String?) -> Unit, val deleteCallback: (Int) -> Unit) : RecyclerView.Adapter<VersionsAdapter.VH>() {
+class VersionsAdapter(val callback: (AndroidModel?) -> Unit, val deleteCallback: (Int) -> Unit) : RecyclerView.Adapter<VersionsAdapter.VH>() {
 
     //Note :- Never pass context from view to adapter!
 
-    var versionListItems: ArrayList<String>? = null
+    var versionListItems: ArrayList<AndroidModel>? = null
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -36,10 +36,11 @@ class VersionsAdapter(val callback: (String?) -> Unit, val deleteCallback: (Int)
             }
         }
 
-        fun bind(data: String?) {
+        fun bind(data: AndroidModel?) {
             //itemView.tag = data
             with(itemView){
-                tvTxt.text = data
+                tvTxt.text = data?.name
+                tvVersion.text = String.format("Version %s",data?.version)
             }
         }
     }

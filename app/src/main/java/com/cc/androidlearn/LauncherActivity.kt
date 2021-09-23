@@ -7,14 +7,20 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Window
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.os.bundleOf
+import androidx.appcompat.widget.AppCompatSpinner
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_launcher.*
+import com.google.android.material.snackbar.Snackbar
+
+
+
 
 
 class LauncherActivity : AppCompatActivity() {
@@ -47,8 +53,8 @@ class LauncherActivity : AppCompatActivity() {
         }
     }
 
-    private fun onItemClicked(selectedItem: String?) {
-        Toast.makeText(this, selectedItem, Toast.LENGTH_SHORT).show()
+    private fun onItemClicked(selectedItem: AndroidModel?) {
+       showCustomDialog(selectedItem)
     }
 
     private fun loadData() {
@@ -60,18 +66,29 @@ class LauncherActivity : AppCompatActivity() {
         //write code to show alert
     }
 
-    private fun showCustomDialog() {
+    private fun showCustomDialog(selectedItem: AndroidModel?) {
+
         with(Dialog(this)) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setContentView(R.layout.item_dialog)
-            val etSample = findViewById<TextInputEditText>(R.id.etSample)
 
+            val etSample = findViewById<TextInputEditText>(R.id.etSample)
+            val spnVersions = findViewById<AppCompatSpinner>(R.id.spnVersions)
             findViewById<AppCompatButton>(R.id.btnAdd).setOnClickListener {
                 if (etSample.text.toString().trim().isEmpty()) {
                     etSample.error = "Sample is required" // change message as per the field!
-                } else
+                } else{
+                    showSnackBar("${selectedItem?.name} is Updated")
                     dismiss()
+                }
             }
+
+            val dataSet = DataProvider.getAndroidVersions()
+            val versions = dataSet.map { it.version }
+            val spinnerAdapter = ArrayAdapter(this@LauncherActivity, android.R.layout.simple_spinner_item,versions)
+            spnVersions.adapter = spinnerAdapter
+            spnVersions.setSelection(versions.indexOf(selectedItem?.name))
+            etSample?.setText(selectedItem?.name)
 
             window?.apply {
                 setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
@@ -79,6 +96,11 @@ class LauncherActivity : AppCompatActivity() {
             }
             show()
         }
+    }
+
+    private fun showSnackBar(msg : String){
+        Snackbar.make(rootLay, msg, Snackbar.LENGTH_LONG)
+            .show()
     }
 
 
