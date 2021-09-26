@@ -8,4 +8,9 @@
     <dimen name="d100">100dp</dimen>
     <dimen name="t35">35sp</dimen>
     <dimen name="d15">15sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
 </resources>

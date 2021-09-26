@@ -10,16 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLearn">
         <activity
-            android:name=".FragmentExampleActivity"
-            android:exported="true" />
+            android:name=".NavigationActivity"
+            android:exported="true" >
 
-        <activity android:name=".LauncherActivity">
+        </activity>
+        <activity
+            android:name=".BottomNavigationActivity"
+            android:exported="true"
+            android:label="@string/title_activity_bottom_navigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FragmentExampleActivity"
+            android:exported="true" >
+
+        </activity>
+        <activity android:name=".LauncherActivity"/>
     </application>
 
 </manifest>
