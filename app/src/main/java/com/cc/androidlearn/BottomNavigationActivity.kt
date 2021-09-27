@@ -2,6 +2,7 @@ package com.cc.androidlearn
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -23,5 +24,16 @@ class BottomNavigationActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navHost.findNavController(), appBarConfiguration)
         btmNavView.setupWithNavController(navHost.findNavController())
+    }
+
+    private fun loadResource(){
+        //color
+        val color = ContextCompat.getColor(this, R.color.black)
+        //string
+        val str = resources.getString(R.string.app_name)
+        //dimens
+        val dimen = resources.getDimension(R.dimen.margin_10dp)
+        //drawable
+        val drawable = ContextCompat.getDrawable(this, R.drawable.btn_circle_green)
     }
 }
