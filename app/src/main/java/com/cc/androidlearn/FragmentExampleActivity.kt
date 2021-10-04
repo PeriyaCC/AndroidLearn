@@ -3,6 +3,7 @@ package com.cc.androidlearn
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_fragment_example.*
@@ -24,6 +25,7 @@ class FragmentExampleActivity : AppCompatActivity() {
 
     private fun getInputs() {
         //intent?.getLongExtra(Constants.Keys.data)
+        showMessage("getInputs")
     }
 
     private fun initClicks() {
@@ -88,6 +90,10 @@ class FragmentExampleActivity : AppCompatActivity() {
         bundle.putString(Constants.Keys.data, "Test")
         frag.arguments = bundle
         return frag
+    }
+
+    private fun showMessage(msg : String){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
 }

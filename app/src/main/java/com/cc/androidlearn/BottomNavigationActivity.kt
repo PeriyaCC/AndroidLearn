@@ -1,6 +1,7 @@
 package com.cc.androidlearn
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
@@ -35,5 +36,9 @@ class BottomNavigationActivity : AppCompatActivity() {
         val dimen = resources.getDimension(R.dimen.margin_10dp)
         //drawable
         val drawable = ContextCompat.getDrawable(this, R.drawable.btn_circle_green)
+    }
+
+    private fun showMessage(msg : String){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }

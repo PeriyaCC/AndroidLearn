@@ -9,6 +9,8 @@ class FragmentOne : Fragment(R.layout.fragment_one) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        requireContext().showToast("Fragment One")
     }
 
 }
