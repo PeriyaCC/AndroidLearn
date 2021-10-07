@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_gson.*
-import java.lang.Exception
+import kotlinx.coroutines.launch
 
 class GsonActivity : AppCompatActivity() {
 
@@ -21,7 +18,7 @@ class GsonActivity : AppCompatActivity() {
         ViewModelProvider(this, gsonViewModelFactory).get(GsonViewModel::class.java)
     }
 
-    private val gsonViewModel by viewModels<GsonViewModel2>() { GsonVMFactory() }
+    private val gsonViewModel by viewModels<GsonViewModel2> { GsonVMFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +49,10 @@ class GsonActivity : AppCompatActivity() {
 
     private fun subscribeToObservers() {
 
+        lifecycleScope.launch {
+
+        }
+
         gsonViewModel.obDataToJson.observe(this, {
             Log.d(tag, "dataToJson $it")
         })
@@ -67,6 +68,14 @@ class GsonActivity : AppCompatActivity() {
 
         gsonViewModel.obJsonToList.observe(this, {
             Log.d(tag, "jsonToList ${it[0].name}")
+        })
+
+        gsonViewModel.obResult.observe(this, {
+            when (it) {
+                is Result.Success -> { it.value }
+                is Result.Failure -> {//handle error}
+                }
+            }
         })
     }
 

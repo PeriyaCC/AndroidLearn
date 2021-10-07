@@ -2,8 +2,10 @@ package com.cc.androidlearn
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.launch
 
 class GsonViewModel2(private val iGsonRepo: IGsonRepo) : ViewModel() {
 
@@ -13,8 +15,13 @@ class GsonViewModel2(private val iGsonRepo: IGsonRepo) : ViewModel() {
     val obListToJson = MutableLiveData<String>()
     val obJsonToList = MutableLiveData<ArrayList<AndroidModel>>()
 
+    val obResult = MutableLiveData<Result<ArrayList<AndroidModel>>>()
 
     fun doConversion(){
+
+        viewModelScope.launch {
+
+        }
 
         val gson = Gson()
         val data = AndroidModel("Android","12")
@@ -42,7 +49,10 @@ class GsonViewModel2(private val iGsonRepo: IGsonRepo) : ViewModel() {
 
     fun getSampleList(){
         val newList = iGsonRepo.sample()
-        //post
+        if(newList.isEmpty())
+            obResult.value = Result.Failure("No versions available")
+        else
+            obResult.value = Result.Success(newList)
     }
 
 }

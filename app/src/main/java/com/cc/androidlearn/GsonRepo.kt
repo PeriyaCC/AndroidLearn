@@ -1,10 +1,11 @@
 package com.cc.androidlearn
 
-import java.util.ArrayList
+import java.util.*
 
 class GsonRepo(private val apiService: IAPiService,
                private val androidLearnPref: AndroidLearnPref,
-               private val dataProvider : DataProvider) : IGsonRepo{
+               private val dataProvider : DataProvider
+               ) : IGsonRepo{
 
     override fun getAndroidVersions() = dataProvider.getAndroidVersions()
 
