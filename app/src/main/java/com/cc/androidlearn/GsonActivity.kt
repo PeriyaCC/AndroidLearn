@@ -2,6 +2,7 @@ package com.cc.androidlearn
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.Observer
@@ -16,9 +17,11 @@ class GsonActivity : AppCompatActivity() {
     private val tag = "GsonActivity"
     private lateinit var gsonViewModelFactory: GsonViewModel.Factory
 
-    private val gsonViewModel by lazy {
+    private val gsonModel by lazy {
         ViewModelProvider(this, gsonViewModelFactory).get(GsonViewModel::class.java)
     }
+
+    private val gsonViewModel by viewModels<GsonViewModel2>() { GsonVMFactory() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
