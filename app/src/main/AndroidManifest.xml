@@ -6,12 +6,16 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".AndroidLearnApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLearn">
         <activity
+            android:name=".presentation.posts.view.CoroutinesActivity"
+            android:exported="true" />
+        <activity
             android:name=".GsonActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,15 +25,11 @@
         <activity
             android:name=".BottomNavigationActivity"
             android:exported="true"
-            android:label="@string/title_activity_bottom_navigation">
-
-        </activity>
+            android:label="@string/title_activity_bottom_navigation"></activity>
         <activity
             android:name=".FragmentExampleActivity"
-            android:exported="true" >
-
-        </activity>
-        <activity android:name=".LauncherActivity"/>
+            android:exported="true"></activity>
+        <activity android:name=".LauncherActivity" />
     </application>
 
 </manifest>
